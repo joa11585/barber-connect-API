@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Agendamentos - Barbearia Prates</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="logo">Painel de Agendamentos</div>
+    <nav>
+      <a href="index.html">Voltar ao Site</a>
+    </nav>
+  </header>
+
+  <section class="painel">
+    <h2>Agendamentos</h2>
+    <input type="text" id="busca" placeholder="🔍 Buscar agendamento..." class="campo-busca">
+    <button id="btnLimpar" class="btn-limpar">🗑️ Excluir todos</button>
+
+    <div id="listaAgendamentos" class="agendamentos"></div>
+  </section>
+
+  <script>
+    const lista = document.getElementById('listaAgendamentos');
+    const busca = document.getElementById('busca');
+    const btnLimpar = document.getElementById('btnLimpar');
+
+    let agendamentos = [];
+
+    function carregarAgendamentos() {
+      agendamentos = JSON.parse(localStorage.getItem('agendamentos')) || [];
+      mostrar(agendamentos);
+    }
+
+    function mostrar(listaFiltrada) {
+      lista.innerHTML = '';
+      if (listaFiltrada.length === 0) {
+        lista.innerHTML = "<p style='color:#ccc;'>Nenhum agendamento encontrado.</p>";
+        return;
+      }
+
+      listaFiltrada.forEach((a, i) => {
+        const div = document.createElement('div');
+        div.classList.add('agendamento-item');
+        div.innerHTML = `
+          <span>${a.hora} - ${a.nome} - ${a.servico} (${a.data})</span>
+          <button class="btn-excluir" data-index="${i}">❌</button>
+        `;
+        lista.appendChild(div);
+      });
+
+      // Evento de excluir individual
+      document.querySelectorAll('.btn-excluir').forEach(btn => {
+        btn.addEventListener('click', e => {
+          const index = e.target.getAttribute('data-index');
+          agendamentos.splice(index, 1);
+          localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
+          carregarAgendamentos();
+        });
+      });
+    }
+
+    busca.addEventListener('input', () => {
+      const termo = busca.value.toLowerCase();
+      const filtrados = agendamentos.filter(a =>
+        a.nome.toLowerCase().includes(termo) ||
+        a.servico.toLowerCase().includes(termo) ||
+        a.hora.includes(termo) ||
+        a.data.includes(termo)
+      );
+      mostrar(filtrados);
+    });
+
+    btnLimpar.addEventListener('click', () => {
+      if (confirm('Tem certeza que deseja excluir todos os agendamentos?')) {
+        localStorage.removeItem('agendamentos');
+        carregarAgendamentos();
+      }
+    });
+
+    carregarAgendamentos();
+  </script>
+</body>
+</html>
