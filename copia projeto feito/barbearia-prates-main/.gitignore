@@ -1,9 +1,0 @@
-node_modules/
-.vscode
-**/OneDrive/
-*.lnk
-*.log
-.vscode/
-.idea/
-Thumbs.db
-Desktop.ini
