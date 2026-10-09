@@ -4,7 +4,7 @@ API desenvolvida em **Node.js + Express + Prisma + SQLite**, responsável por ge
 
 ---
 
-### 📁 Estrutura do Projeto
+###  Estrutura do Projeto
 
 ```
 barbearia/
@@ -27,7 +27,7 @@ barbearia/
 
 ---
 
-### ⚙️ Tecnologias Utilizadas
+###  Tecnologias Utilizadas
 
 - **Node.js** (runtime)
 - **Express** (framework HTTP)
@@ -37,25 +37,25 @@ barbearia/
 
 ---
 
-### 🚀 Como Rodar Localmente
+###  Como Rodar Localmente
 
-#### 1️⃣ Clonar o repositório
+#### Clonar o repositório
 ```bash
 git clone https://github.com/robertcostaa/barbearia-prates.git
 cd barbearia-prates
 ```
 
-#### 2️⃣ Instalar dependências
+####  Instalar dependências
 ```bash
 npm install
 ```
 
-#### 3️⃣ Criar o banco e gerar o Prisma Client
+####  Criar o banco e gerar o Prisma Client
 ```bash
 npx prisma migrate dev --name init
 ```
 
-#### 4️⃣ Criar o arquivo `.env`
+####  Criar o arquivo `.env`
 Crie um arquivo chamado `.env` na raiz do projeto e adicione:
 
 ```
@@ -63,7 +63,7 @@ DATABASE_URL="file:./dev.db"
 PORT=3000
 ```
 
-#### 5️⃣ Rodar em modo desenvolvimento
+####  Rodar em modo desenvolvimento
 ```bash
 npm run dev
 ```
@@ -72,21 +72,21 @@ Acesse: [http://localhost:3000](http://localhost:3000)
 
 ---
 
-### 🔐 Rotas Principais da API
+###  Rotas Principais da API
 
-#### 🔸 Login do Barbeiro
+####  Login do Barbeiro
 `POST /barbeiro/login`
 
-#### 🔸 Listar agendamentos
+####  Listar agendamentos
 `GET /barbeiro/agendamentos`
 
-#### 🔸 Cancelar agendamento
+####  Cancelar agendamento
 `PATCH /barbeiro/cancelar/:id`
 
 #### 🔸 Concluir agendamento
 `PATCH /barbeiro/concluir/:id`
 
-#### 🔸 Criar agendamento
+####  Criar agendamento
 `POST /agendamentos`
 ```json
 {
@@ -100,5 +100,5 @@ Acesse: [http://localhost:3000](http://localhost:3000)
 
 ---
 
-### 🧾 Licença
+###  Licença
 Este projeto é livre para uso educacional e aprendizado.  
